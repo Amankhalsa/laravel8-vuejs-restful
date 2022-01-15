@@ -46,7 +46,7 @@ All Category
     <tr>
       @foreach($get_cat_data as $keys => $value)
       <th scope="row">{{$get_cat_data->firstitem()+$loop->index}}</th>
-      <td>{{ $value->get_name->name}}</td>
+      <td>{{ $value->name}}</td>
       <td>{{ $value->category_name}}</td>
       <td>{{ Carbon\carbon::parse($value->created_at)->diffForHumans()}}</td>
     </tr>

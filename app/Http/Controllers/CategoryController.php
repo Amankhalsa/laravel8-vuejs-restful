@@ -15,8 +15,14 @@ class CategoryController extends Controller
 {
     //
 public function view_category(){
-	// $data['get_cat_data']=Category::all();
-    $data['get_cat_data']=Category::paginate(5);
+	 // quesy builder relation with user and category table 
+    $data['get_cat_data']=DB::table('categories')
+    ->join('users','categories.user_id','users.id')
+    ->select('categories.*','users.name')
+    ->latest()->paginate(5);
+
+    // $data['get_cat_data']=Category::all();
+    // $data['get_cat_data']=Category::paginate(5);
 
     // featchdata by query builder 
     // $data['get_cat_data']=DB::table('categories')->latest()->get();
