@@ -33,10 +33,12 @@ All Category
 
   <thead>
     <tr>
-      <th scope="col">No</th>
+       <th scope="col">No</th>
       <th scope="col"> User Name</th>
       <th scope="col">Cat Name</th>
       <th scope="col">Created at</th>
+      <th scope="col">Action</th>
+
     </tr>
   </thead>
   <tbody>
@@ -46,9 +48,16 @@ All Category
     <tr>
       @foreach($get_cat_data as $keys => $value)
       <th scope="row">{{$get_cat_data->firstitem()+$loop->index}}</th>
-      <td>{{ $value->name}}</td>
+      <td>{{ $value['get_name']['name']}}</td>
       <td>{{ $value->category_name}}</td>
       <td>{{ Carbon\carbon::parse($value->created_at)->diffForHumans()}}</td>
+      <td>
+        
+        <a href="{{route('edit.category',$value->id)}}" class="btn btn-info">Edit</a>
+        <a href="{{route('softdel.category',$value->id)}}" class="btn btn-danger">Delete</a>
+
+      </td>
+
     </tr>
 @endforeach
   </tbody>
@@ -83,5 +92,66 @@ All Category
  
         </div>
         </div>
+
+        <!--====================== end col md 12 ================== -->
+            <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="container">
+     <div class="row">
+
+              <div class="col-md-8">
+                <div class="card">
+
+
+                  <div class="card-header">Trash data </div>
+        
+               
+                <table class="table table-striped">
+
+  <thead>
+    <tr>
+       <th scope="col">No</th>
+      <th scope="col"> User Name</th>
+      <th scope="col">Cat Name</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+ 
+
+
+    <tr>
+      @foreach($trashdata as $keys => $value)
+      <th scope="row">{{$get_cat_data->firstitem()+$loop->index}}</th>
+      <td>{{ $value['get_name']['name']}}</td>
+      <td>{{ $value->category_name}}</td>
+      <td>{{ Carbon\carbon::parse($value->created_at)->diffForHumans()}}</td>
+      <td>
+        
+        <a href="{{url('category/restore/'.$value->id)}}" class="btn btn-info">Restore</a>
+        <a href="{{url('category/permananet/'.$value->id)}}" class="btn btn-danger">P. Delete</a>
+
+      </td>
+
+    </tr>
+@endforeach
+  </tbody>
+</table>
+{{$trashdata->links()}}
+            </div>
+     </div>
+         
+            </div>
+        </div>
+        <!-- ---------------- -->
+ 
+        </div>
+        </div>
+
+<!--=================== trash div end ===================-->
+
+
     </div>
 </x-app-layout>

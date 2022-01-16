@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
+
 
 
 /*
@@ -50,3 +52,40 @@ Route::get('/view/category',[CategoryController::class,'view_category'])->name('
 Route::post('/store/category',[CategoryController::class,'store_category'])->name('store.category');
 
 // 022 Form Validation & Show Custom Error Message
+
+//edit category
+Route::get('category/edit/{id}',[CategoryController::class,'edit_category'])->name('edit.category');
+
+
+// updatedata
+Route::post('category/update/{id}',[CategoryController::class,'update_category'])->name('update.category');
+
+
+//soft delete 
+Route::get('shoftdelete/category/{id}',[CategoryController::class,'soft_delcategory'])->name('softdel.category');
+
+
+// restore 
+Route::get('category/restore/{id}',[CategoryController::class,'restore_category'])->name('restore.category');
+
+// parmanent delete 
+Route::get('category/permananet/{id}',[CategoryController::class,'pdelete_category'])->name('parm.delete');
+
+// ================= brands =======================
+Route::get('brand/view',[BrandController::class,'view_brand'])->name('all.brand');
+
+//brand edit 
+Route::get('brand/edit/{id}',[BrandController::class,'edit_brand'])->name('edit.brand');
+
+//update brand 
+Route::get('brand/update/{id}',[BrandController::class,'update_brand'])->name('update_brand');
+
+//delete brand 
+Route::get('brand/delete/{id}',[BrandController::class,'delete_brand'])->name('delete.brand');
+
+
+
+//store brand 
+
+Route::post('store/brand',[BrandController::class,'store_brand'])->name('store.brand');
+
