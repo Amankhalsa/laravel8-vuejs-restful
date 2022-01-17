@@ -78,12 +78,17 @@ Route::get('brand/view',[BrandController::class,'view_brand'])->name('all.brand'
 Route::get('brand/edit/{id}',[BrandController::class,'edit_brand'])->name('edit.brand');
 
 //update brand 
-Route::get('brand/update/{id}',[BrandController::class,'update_brand'])->name('update_brand');
+Route::post('brand/update/{id}',[BrandController::class,'update_brand'])->name('update.brand');
 
 //delete brand 
 Route::get('brand/delete/{id}',[BrandController::class,'delete_brand'])->name('delete.brand');
 
+// restore 
+Route::get('brand/restore/{id}',[BrandController::class,'restore_brand'])->name('restore.brand');
 
+
+// paramdelete_brand
+Route::get('brand/paramdel/{id}',[BrandController::class,'paramdelete_brand'])->name('paramdelete.brand');
 
 //store brand 
 

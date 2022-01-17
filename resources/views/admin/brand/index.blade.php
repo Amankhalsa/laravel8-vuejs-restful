@@ -100,6 +100,60 @@ Brand page
         </div>
         <!-- ---------------- -->
  
+
+
+ <!-- trashed start  -->
+
+         <div class="container-fluid">
+     <div class="row">
+              <div class="col-md-8">
+                <div class="card">
+
+<div class="card-header">All Brand</div>    
+<table class="table table-striped">
+  <thead>
+    <tr>
+       <th scope="col">No</th>
+      <th scope="col"> Brand Name</th>
+      <th scope="col">Brand image</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+ 
+
+
+      @foreach($get_trash as $keys => $value)
+
+    <tr>
+      <th scope="row">{{$keys+1}}</th>
+      <td>{{ $value->brand_name}}</td>
+      <td>
+        <img src="{{ asset($value->brand_image)}}" style="width: auto; height: 40px;">
+      </td>
+      <td>{{ Carbon\carbon::parse($value->created_at)->diffForHumans()}}</td>
+      <td>
+        
+    <a href="{{route('restore.brand', $value->id)}}" class="btn btn-info">Restore</a>
+    <a href="{{route('paramdelete.brand', $value->id)}}" onclick="return confirm('Want to delete ?')" class="btn btn-danger">PDelete</a>
+
+      </td>
+
+    </tr>
+@endforeach
+
+
+  </tbody>
+</table>
+
+            </div>
+     </div>
+               
+            </div>
+
+        </div>
         </div>
         </div>
 

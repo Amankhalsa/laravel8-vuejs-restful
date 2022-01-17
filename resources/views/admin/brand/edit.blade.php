@@ -19,8 +19,10 @@ update Brand page
                 <div class="card">
                   <div class="card-header">Updae Brand</div>
           <div class="card-body">
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{route('update.brand',[$get_brand->id])}}" method="post" 
+  enctype="multipart/form-data">
   @csrf
+  <input type="hidden" name="old_image" value="{{$get_brand->brand_image}}">
   <div class="form-group">
     <label for="brandname">ਵਸਤੁ ਦਾ ਨਾਂ ਲਿਖੋ </label>
     <input type="text"  
@@ -30,14 +32,14 @@ update Brand page
 @enderror
   </div>
     <div class="form-group">
-         <img src="{{ asset($get_brand->brand_image)}}" style="width: auto; height: 80px;">
+         <img src="{{ asset($get_brand->brand_image)}}" id="output" style="width: auto; height: 80px;">
     </div>
 
 <!-- brand image  -->
   <div class="form-group">
     <label for="brandimage">ਬ੍ਰੈੰਡ ਫੋਟੋ </label>
     <input type="file"  
-     class="form-control" name="brand_image" id="brandimage"  aria-describedby="">
+     class="form-control" name="brand_image" id="brandimage"  aria-describedby=""  accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
      @error('brand_image')
     <div class=" text-danger">{{ $message }}</div>
 @enderror
