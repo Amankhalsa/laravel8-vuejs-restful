@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Image;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\support\Carbon;
 
+use App\Models\Multipicture;
+use Illuminate\support\Carbon;
 use App\Models\Brand;
 
 
@@ -34,15 +36,21 @@ class BrandController extends Controller
         'brand_image.min' => 'Brand longer than 4 char',
     ]);
 
-
-	    $brand_image =$request->file('brand_image');
-	    $gen_name= hexdec(uniqid());
-	    $img_ext = strtolower($brand_image->getClientOriginalExtension());
-	    $img_name = $gen_name.'.'.$img_ext;
-	    $img_location ='brand/images/';
-	   	$last_img= $img_location.$img_name;
-	   	$brand_image->move($img_location,$img_name);
-
+// without image intervention 
+	    // $brand_image =$request->file('brand_image');
+	    // $gen_name= hexdec(uniqid());
+	    // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+	    // $img_name = $gen_name.'.'.$img_ext;
+	    // $img_location ='brand/images/';
+	   	// $last_img= $img_location.$img_name;
+	   	// $brand_image->move($img_location,$img_name);
+// without image intervention 
+// ======================= using imagee intervention ==================
+$brand_image =$request->file('brand_image');
+$gen_name= hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+Image::make($brand_image)->resize(300,200)->save('brand/images/'.$gen_name);
+$last_img = 'brand/images/'.$gen_name;
+// ======================= using imagee intervention ==================
 	    	Brand::insert([
 	    		'brand_name'=>$request->brand_name,
 	    		'brand_image'=>$last_img,
@@ -78,7 +86,9 @@ $old_image= $request->old_image;
 	    $img_location ='brand/images/';
 	   	$last_img= $img_location.$img_name;
 	   	$brand_image->move($img_location,$img_name);
-unlink($old_image);
+        unlink($old_image);
+
+
 	    	Brand::find($id)->update([
 	    		'brand_name'=>$request->brand_name,
 	    		'brand_image'=>$last_img,
@@ -123,5 +133,37 @@ else{
   	$data =Brand::onlyTrashed()->find($id)->forcedelete();
 
     	 return redirect()->route('all.brand')->with('success','ਤੁਹਾਡਾ ਡਾਟਾ Param Delete ਹੋ ਗਿਆ ਹੈ ');
+    }
+    // =================== Multi picture view =======================
+    public function view_multi_images(){
+        $data['get_pics']=Multipicture::all();
+        return view('admin.multipics.index',$data);
+    }
+
+
+    // ================ store multi images ==================
+
+    public function store_multipics(Request $request){
+
+// ======================= using imagee intervention ==================
+
+$image =$request->file('image');
+foreach($image as $value) {  //start loop
+    # code...
+
+$gen_name= hexdec(uniqid()).'.'.$value->getClientOriginalExtension();
+Image::make($value)->fit(300,300)->save('brand/multi/'.$gen_name);
+$last_img = 'brand/multi/'.$gen_name;
+// ======================= using imagee intervention ==================
+            Multipicture::insert([
+         
+                'image'=>$last_img,
+                'created_at'=>Carbon::now()
+            ]);
+
+            }//end foreach loop
+
+ return redirect()->back()->with('success','ਤੁਹਾਡਾ ਡਾਟਾ ਐਡ ਹੋ ਗਿਆ ਹੈ ');
+
     }
 }

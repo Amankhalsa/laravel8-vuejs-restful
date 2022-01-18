@@ -94,3 +94,12 @@ Route::get('brand/paramdel/{id}',[BrandController::class,'paramdelete_brand'])->
 
 Route::post('store/brand',[BrandController::class,'store_brand'])->name('store.brand');
 
+//multi image route 
+Route::get('view-multi/images',[BrandController::class,'view_multi_images'])->name('view.multi');
+
+//store multi images 
+Route::post('/multiimages',[BrandController::class,'store_multipics'])->name('store.multipics');
+
+
+
+

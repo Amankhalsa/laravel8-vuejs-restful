@@ -7,6 +7,36 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+#  Image intervention package link 
+* 1st step
+-----------------------------------------
+	
+		composer.phar require intervention/image
+
+-----------------------------------------
+* open config app.php file open  scroll page in package serveice provider area
+
+* 2nd step
+-----------------------------------------
+
+		Intervention\Image\ImageServiceProvider::class,
+
+-----------------------------------------
+
+* Add the facade of this package to the $aliases array.
+
+* 3rd step
+-----------------------------------------
+
+		'Image' => Intervention\Image\Facades\Image::class
+
+-----------------------------------------
+* then Save & publish image intervation in project
+		
+			php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
+
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
