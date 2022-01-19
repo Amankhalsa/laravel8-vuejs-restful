@@ -33,9 +33,10 @@ Brand page
   
 
   <div class="card">
-    <img src="{{asset($value->image)}}" class="card-img-top" alt="image of card {{$keys+1}}">
+
+    <img src="{{asset($value->image)}}" class="card-img-top" alt="image of card {{$keys+1}}"  >   
     <div class="card-body">
-      <p class="card-title">Card title {{$keys+1}}</p>
+      <p class="card-title"><a href="{{asset($value->image)}}">Card title {{$keys+1}}</a></p>
 
     </div>
 
