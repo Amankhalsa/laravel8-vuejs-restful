@@ -21,7 +21,7 @@ use App\Http\Controllers\BrandController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 Route::get('about', function(){
 	return view('about');	
@@ -40,10 +40,13 @@ Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 	// $data['get_data']= User::all();
-	$data['get_data']=DB::table('users')->get();
-    return view('dashboard',$data);
+	// $data['get_data']=DB::table('users')->get();
+    // return view('dashboard',$data);
+    return view('admin.index');
 })->name('dashboard');
 // 019 Eloquent ORM Read Users Data
+
+
 
 
 // view category cont
@@ -101,5 +104,6 @@ Route::get('view-multi/images',[BrandController::class,'view_multi_images'])->na
 Route::post('/multiimages',[BrandController::class,'store_multipics'])->name('store.multipics');
 
 
-
+// logout 
+Route::get('user/logout',[BrandController::class,'logout'])->name('user.logout');
 

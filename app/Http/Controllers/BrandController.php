@@ -166,4 +166,14 @@ $last_img = 'brand/multi/'.$gen_name;
  return redirect()->back()->with('success','ਤੁਹਾਡਾ ਡਾਟਾ ਐਡ ਹੋ ਗਿਆ ਹੈ ');
 
     }
+
+    //logout method 
+
+
+    public function logout(){
+
+            Auth::logout();
+            return redirect()->route('login');
+
+    }
 }
