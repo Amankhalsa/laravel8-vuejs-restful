@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\HomeController;
+
 
 
 
@@ -21,7 +23,8 @@ use App\Http\Controllers\BrandController;
 */
 
 Route::get('/', function () {
-    return view('home.index');
+	  	$data['get_brand']=DB::table('brands')->get();
+    return view('home.index',$data);
 });
 Route::get('about', function(){
 	return view('about');	
@@ -106,4 +109,15 @@ Route::post('/multiimages',[BrandController::class,'store_multipics'])->name('st
 
 // logout 
 Route::get('user/logout',[BrandController::class,'logout'])->name('user.logout');
+
+
+//===================== Admin all routes ===================== 
+Route::get('view/slider',[HomeController::class,'manage_slider'])->name('home.slider.view');
+ 
+
+ // add slider 
+Route::get('add/slider',[HomeController::class,'add_slider'])->name('add.slider');
+
+// store slider 
+Route::post('store/slider',[HomeController::class,'store_slider'])->name('store.slider');
 
