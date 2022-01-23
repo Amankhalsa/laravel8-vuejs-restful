@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 @section('title')
-   Slider edit
+About view
 @endsection
 @section('content')
     <div class="py-12">
@@ -8,7 +8,7 @@
         <div class="container-fluid">
      <div class="row">
               <div class="col-md-12">
-                <button> <a href="{{route('add.slider')}}" class="float-left  btn btn-info">Add Slider </a></button>
+                <button> <a href="{{ route('add.home.about')}}" class="float-left  btn btn-info">Add About </a></button>
                 <div class="card">
  @if(session('success'))       
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,31 +20,29 @@
 @endif
 
 
-<div class="card-header">Manage slider </div>    
+<div class="card-header">Manage About  </div>    
 <table class="table table-striped">
   <thead>
     <tr>
-       <th scope="col">No</th>
-      <th scope="col" width="15%" > Slider Title</th>
-      <th scope="col" width="50%">Slider Discription</th>
-      <th scope="col" width="10%">Image </th>
+       <th scope="col" width="5%">No</th>
+      <th scope="col" width="10%" >Title</th>
+      <th scope="col" width="20%">short Discription</th>
+      <th scope="col" width="30%">long Discription  </th>
       <th scope="col" width="20%">Action</th>
+
 
     </tr>
   </thead>
   <tbody>
-      @foreach($get_sliders as $keys => $value)
+      @foreach($get_about as $keys => $value)
     <tr>
       <th scope="row">{{$keys+1}}</th>
       <td>{{ $value->title}}</td>
-      <td>
-        {{$value->discription}}
-      </td>
-      <td><img src="{{ asset($value->image)}}" style="width: auto; height: 60px;"></td>
-      <td>
-        
-    <a href="{{route('edit.slider', $value->id)}}" class="btn btn-info">Edit</a>
-    <a href="{{route('delete.slider', $value->id)}}" class="btn btn-danger">Delete</a>
+      <td>{{$value->shortdis}}</td>
+      <td>{{$value->longdis}} </td>
+      <td>  
+    <a href="{{route('edit.home.about', $value->id)}}" class="btn btn-info">Edit</a>
+    <a href="{{route('delete.home.about', $value->id)}}" class="btn btn-danger">Delete</a>
 
       </td>
 
@@ -76,11 +74,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-       <th scope="col">No</th>
-      <th scope="col"> Brand Name</th>
-      <th scope="col">Brand image</th>
-      <th scope="col">Created at</th>
-      <th scope="col">Action</th>
+       <th scope="col" width="5%">No</th>
+      <th scope="col" width="10%" >  Title</th>
+      <th scope="col" width="20%">short Discription</th>
+      <th scope="col" width="30%">long Discription  </th>
+      <th scope="col" width="20%">Action</th>
 
     </tr>
   </thead>
@@ -93,10 +91,8 @@
     <tr>
       <th scope="row">{{$keys+1}}</th>
       <td>{{ $value->title}}</td>
-      <td>
-        {{$value->discription}}
-      </td>
-      <td><img src="{{ asset($value->image)}}" style="width: auto; height: 60px;"></td>
+      <td>{{$value->shortdis}}</td>
+      <td>{{$value->longdis}} </td>
       <td>
         
     <a href="{{route('restore.slider', $value->id)}}" class="btn btn-info">Restore</a>

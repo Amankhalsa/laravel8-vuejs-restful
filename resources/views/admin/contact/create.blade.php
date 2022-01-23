@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 @section('title')
-   Slider edit
+Create Contact 
 @endsection
 @section('content')
 
@@ -14,47 +14,41 @@
 @endif
 
 <div class="col-lg-12">
-                  <div class="card card-default">
-                    <div class="card-header card-header-border-bottom">
-                      <h2>Manage/Add Home page Slider </h2>
-                    </div>
-                    <div class="card-body">
-<form action="{{route('store.slider')}}" method="post" enctype="multipart/form-data">
+<div class="card card-default">
+<div class="card-header card-header-border-bottom">
+  <h2>Manage/Add Home Contact data </h2>
+</div>
+<div class="card-body">
+<form action="{{route('store.admin.contact')}}" method="post" >
   @csrf
 <div class="form-group">
-<label for="title">Title </label>
-<input type="text" class="form-control" name="title" id="title" placeholder="Enter slider title">
+<label for="Address">Address </label>
+<input type="text" class="form-control" name="address" id="Address" placeholder="Enter slider Address">
 
-@error('title')
+@error('address')
+<div class=" text-danger">{{ $message }}</div>
+@enderror
+</div>
+<!-- ======================= -->
+<div class="form-group">
+<label for="email">Email </label>
+<input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+
+@error('email')
+<div class=" text-danger">{{ $message }}</div>
+@enderror
+</div>
+<!-- ======================= -->
+<div class="form-group">
+<label for="phone">phone </label>
+<input type="number" class="form-control" name="phone" id="phone" placeholder="Enter phone">
+
+@error('phone')
 <div class=" text-danger">{{ $message }}</div>
 @enderror
 </div>
 <!-- ======================= -->
 
-<div class="form-group">
-<label for="discription">Discription </label>
-<textarea class="form-control" name="discription" id="discription" rows="3"  placeholder="Enter Discription"></textarea>
-
- @error('discription')
-<div class=" text-danger">{{ $message }}</div>
-@enderror
-</div>
-
-<!-- ======================= -->
-<div class="form-group">
-
-
-   <img src="" id="output" style="width: auto; height: 80px;">
-</div>
-<!-- ======================= -->
-<div class="form-group">
-<label for="image">Example file input</label>
-<input type="file" class="form-control-file" name="image" id="image" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
- @error('image')
-<div class=" text-danger">{{ $message }}</div>
-@enderror
-</div>
-<!-- ======================= -->
 <div class="form-footer pt-4 pt-5 mt-4 border-top">
 <button type="submit" class="btn btn-primary btn-default">Submit</button>
 <button type="reset" class="btn btn-info btn-default">Reset</button>

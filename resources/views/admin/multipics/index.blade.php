@@ -1,11 +1,9 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-Brand page 
-<div style="float: right">
-</div> 
-        </h2>
-    </x-slot>
+
+@extends('admin.admin_master')
+@section('title')
+ Portfolio
+@endsection
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="container-fluid">
@@ -26,11 +24,8 @@ Brand page
 @foreach($get_pics as $keys => $value)
 <div  class="col-md-3 mt-3">
   <div class="card">
-    <img src="{{asset($value->image)}}" class="card-img-top" alt="image of card {{$keys+1}}"  >   
-    <div class="card-body">
-      <p class="card-title">
-        <a href="{{asset($value->image)}}">Card title {{$keys+1}}</a></p>
-    </div>
+    <img src="{{asset($value->image)}}" class="card-img-top" alt="image of card {{$keys+1}}">   
+<span><a href="{{route('edit.ortfolio', $value->id)}}">edit</a></span>
 </div>
 </div>
 @endforeach
@@ -62,5 +57,5 @@ Brand page
         <!-- ---------------- -->
         </div>
         </div>
-    </div>
-</x-app-layout>
+   
+   @endsection

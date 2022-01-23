@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 @section('title')
-   Slider edit
+   Create about
 @endsection
 @section('content')
 
@@ -16,14 +16,14 @@
 <div class="col-lg-12">
                   <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                      <h2>Manage/Add Home page Slider </h2>
+                      <h2>Manage/Add Home page about </h2>
                     </div>
                     <div class="card-body">
-<form action="{{route('store.slider')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('store.home.about')}}" method="post" >
   @csrf
 <div class="form-group">
 <label for="title">Title </label>
-<input type="text" class="form-control" name="title" id="title" placeholder="Enter slider title">
+<input type="text" class="form-control" name="title" id="title" placeholder="Enter about title">
 
 @error('title')
 <div class=" text-danger">{{ $message }}</div>
@@ -32,28 +32,27 @@
 <!-- ======================= -->
 
 <div class="form-group">
-<label for="discription">Discription </label>
-<textarea class="form-control" name="discription" id="discription" rows="3"  placeholder="Enter Discription"></textarea>
+<label for="discription">short Discription </label>
+<textarea class="form-control" name="shortdis" id="discription" rows="3"  placeholder="Enter short Discription"></textarea>
 
- @error('discription')
+ @error('shortdis')
 <div class=" text-danger">{{ $message }}</div>
 @enderror
 </div>
 
 <!-- ======================= -->
-<div class="form-group">
 
-
-   <img src="" id="output" style="width: auto; height: 80px;">
-</div>
-<!-- ======================= -->
 <div class="form-group">
-<label for="image">Example file input</label>
-<input type="file" class="form-control-file" name="image" id="image" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
- @error('image')
+<label for="discription">long Discription </label>
+<textarea class="form-control" name="longdis" id="discription" rows="3"  placeholder="Enterlong  Discription"></textarea>
+
+ @error('longdis')
 <div class=" text-danger">{{ $message }}</div>
 @enderror
 </div>
+
+<!-- ======================= -->
+
 <!-- ======================= -->
 <div class="form-footer pt-4 pt-5 mt-4 border-top">
 <button type="submit" class="btn btn-primary btn-default">Submit</button>

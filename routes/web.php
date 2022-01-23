@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
+use App\Models\Slider;
+use App\Http\Controllers\HomeaboutController;
+
 
 
 
@@ -39,6 +42,44 @@ Route::get('home', function(){
 	echo "this is home page ";	
 });
 Route::get('/contact',[ContactController::class,'index'])->name('contact');
+// ==========================================================================
+
+// ================== Contact us  ========================
+
+Route::get('admin/contact',[ContactController::class,'admin_contact'])->name('admin.contact');
+
+
+//======================== create contact ========================
+Route::get('create/contact',[ContactController::class,'add_contact_data'])->name('add.contact.data');
+
+
+//======================== store contact ========================
+Route::post('store/contact',[ContactController::class,'store_contact_data'])->name('store.admin.contact');
+
+
+//======================== edit contact ========================
+
+Route::get('edit/contact/{id}',[ContactController::class,'edit_contact_data'])->name('edit.contact.data');
+
+
+
+//======================== update ========================
+Route::post('update/contact/{id}',[ContactController::class,'update_contact'])->name('update.admin.contact');
+
+
+
+// home view contact address
+Route::get('view-home/contact/',[ContactController::class,'view_home_contact'])->name('home.contact');
+
+// send contact 
+
+Route::post('send/contact/',[ContactController::class,'send_contact'])->name('send.contact');
+
+//messages
+Route::get('view/messages/',[ContactController::class,'contact_messages'])->name('contact.messages');
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
@@ -106,6 +147,13 @@ Route::get('view-multi/images',[BrandController::class,'view_multi_images'])->na
 //store multi images 
 Route::post('/multiimages',[BrandController::class,'store_multipics'])->name('store.multipics');
 
+// update multipics 
+Route::get('edit-multi/images/{id}',[BrandController::class,'edit_multi_images'])->name('edit.ortfolio');
+
+// update multipics 
+Route::post('update-multi/images/{id}',[BrandController::class,'update_multi_images'])->name('update.multipics');
+
+
 
 // logout 
 Route::get('user/logout',[BrandController::class,'logout'])->name('user.logout');
@@ -120,4 +168,45 @@ Route::get('add/slider',[HomeController::class,'add_slider'])->name('add.slider'
 
 // store slider 
 Route::post('store/slider',[HomeController::class,'store_slider'])->name('store.slider');
+
+
+// edit slider 
+Route::get('edit/slider/{id}',[HomeController::class,'edit_slider'])->name('edit.slider');
+
+// update slider 
+
+Route::post('update-home/slider/{id}',[HomeController::class,'update_home_slider'])->name('update.slider');
+
+
+//delete 
+Route::get('delete/slider/{id}',[HomeController::class,'delete_slider'])->name('delete.slider');
+// restore 
+Route::get('restore/slider/{id}',[HomeController::class,'restore_slider'])->name('restore.slider');
+
+
+//parmanent delete
+Route::get('parmanent/delete/slider/{id}',[HomeController::class,'pdelete_slider'])->name('pdelete.slider');
+
+
+// =============  home about view ==================
+Route::get('home/about',[HomeaboutController::class,'view_home_about'])->name('home.about.view');
+// add home about 
+
+Route::get('add/home/about',[HomeaboutController::class,'add_home_about'])->name('add.home.about');
+
+//store  home about 
+Route::post('store/home/about',[HomeaboutController::class,'store_home_about'])->name('store.home.about');
+
+// edit home about 
+Route::get('edit/home/about/{id}',[HomeaboutController::class,'edit_home_about'])->name('edit.home.about');
+//update/
+Route::post('update/home/about/{id}',[HomeaboutController::class,'update_home_about'])->name('update.home.about');
+
+//delete data 
+Route::get('delete/home/about/{id}',[HomeaboutController::class,'delete_home_about'])->name('delete.home.about');
+
+
+
+
+
 

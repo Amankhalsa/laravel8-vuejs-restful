@@ -176,4 +176,42 @@ $last_img = 'brand/multi/'.$gen_name;
             return redirect()->route('login');
 
     }
+
+
+    // edit multipics 
+
+    public function edit_multi_images($id){
+        $data['edit_multi']= Multipicture::find($id);
+        return view('admin.multipics.edit',$data);
+
+    }
+
+    // update multi pics 
+    public function update_multi_images(Request $request, $id){
+        $old_image =$request->old_image;
+
+ $multi_image =$request->file('image');
+if ($multi_image) {
+
+    $gen_name= hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
+    Image::make($multi_image)->resize(300,300)->save('brand/multi/'.$gen_name);
+    $last_img = 'brand/multi/'.$gen_name;
+    unlink($old_image);
+    }
+        // $data =Multipicture::find($id)->update([
+        //         'image'=>$last_img,
+        // ]);
+
+        $data =Multipicture::find($id);
+        $data->image =$last_img;
+        $data->save();
+
+ return redirect()->route('view.multi')->with('success','ਤੁਹਾਡਾ ਸਲਾਈਡਰ ਡਾਟਾ ਅਪਡੇਟ ਹੋ ਗਿਆ ਹੈ');
+
+
+
+
+
+
+    }
 }
