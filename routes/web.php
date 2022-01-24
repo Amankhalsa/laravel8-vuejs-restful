@@ -9,7 +9,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Models\Slider;
 use App\Http\Controllers\HomeaboutController;
-
+use App\Http\Controllers\ChangePass;
 
 
 
@@ -206,7 +206,16 @@ Route::post('update/home/about/{id}',[HomeaboutController::class,'update_home_ab
 Route::get('delete/home/about/{id}',[HomeaboutController::class,'delete_home_about'])->name('delete.home.about');
 
 
+Route::get('change/pass/',[ChangePass::class,'change_pass'])->name('change.pass');
+
+
+// update password 
+Route::post('update/pass/',[ChangePass::class,'update_pass'])->name('update.password');
+
+Route::get('edit/profile/',[ChangePass::class,'edit_profile'])->name('edit.profile');
 
 
 
+// update profile 
+Route::post('update/profile/',[ChangePass::class,'update_profile'])->name('update.profile');
 
